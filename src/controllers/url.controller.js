@@ -1,4 +1,4 @@
-const urlService = require("../services/url.service");
+const urlService = require("../services/url.service.js");
 
 exports.createShortUrl = async (req, res) => {
     try {
@@ -20,7 +20,7 @@ exports.createShortUrl = async (req, res) => {
 
 exports.redirectUrl = async (req, res) => {
     try {
-        const { shortCode } = res.params;
+        const { shortCode } = req.params;
         const url = await urlService.getOriginalUrl(shortCode);
 
         res.redirect(url.originalUrl);
@@ -31,7 +31,7 @@ exports.redirectUrl = async (req, res) => {
 
 exports.getAnalytics = async (req, res) => {
     try {
-        const { shortCode } = res.params;
+        const { shortCode } = req.params;
         const Url = require("../models/url.model");
         
         const url = await Url.findOne({ shortCode });

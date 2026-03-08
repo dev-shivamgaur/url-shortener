@@ -1,5 +1,5 @@
 const { nanoid } = require("nanoid");
-const Url = require("../models/url.model");
+const Url = require("../models/url.model.js");
 
 exports.createShortUrl = async (originalUrl, customAlias, expiresAt) => {
     const shortCode = customAlias || nanoid(6);
